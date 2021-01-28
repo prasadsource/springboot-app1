@@ -5,11 +5,13 @@ pipeline {
       stage('build') {
          steps {
             //mvn clean install
+            echo 'Hello World build'
          }
       }
       stage('test') {
          steps {
             //mvn test
+            echo 'Hello World test'
          }
       }
       stage('deploy dev') {
