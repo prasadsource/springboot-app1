@@ -6,12 +6,16 @@ pipeline {
          steps {
             //mvn clean install
             echo 'Hello World build'
+            withMaven(maven:"maven-3.6.3"){
+             bat 'mvn clean compile'
+            }
          }
       }
       stage('test') {
          steps {
             //mvn test
             echo 'Hello World test'
+            bat 'mvn test'
          }
       }
       stage('deploy dev') {
