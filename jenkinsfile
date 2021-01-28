@@ -1,32 +1,28 @@
 pipeline {
-   agent any
 
-   stages {
-      stage('build') {
-         steps {
-            //mvn clean install
-            echo 'Hello World build'
-            withMaven(maven:"maven-3.6.3"){
-             bat 'mvn clean compile'
-            }
-         }
-      }
-      stage('test') {
-         steps {
-            //mvn test
-            echo 'Hello World test'
-            bat 'mvn test'
-         }
-      }
-      stage('deploy dev') {
-         steps {
-            echo 'Hello World dev'
-         }
-      }
-      stage('deploy test') {
-         steps {
-            echo 'Hello World test'
-         }
-      }
-   }
+    agent any
+    tools {
+        maven 'Maven_3.5.2' 
+    }
+    stages {
+        stage('Compile stage') {
+            steps {
+                bat "mvn clean compile" 
+        }
+    }
+
+         stage('testing stage') {
+             steps {
+                bat "mvn test"
+        }
+    }
+
+          stage('deployment stage') {
+              steps {
+                bat "mvn deploy"
+        }
+    }
+
+  }
+
 }
